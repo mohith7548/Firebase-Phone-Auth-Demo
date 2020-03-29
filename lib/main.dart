@@ -61,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   /// 3. If the phoneNumber is not in the device running the app
   ///       We have to first ask the OTP and get `AuthCredential`(`_phoneAuthCredential`)
   ///       Next we can use that `AuthCredential` to signIn
-  ///       This method can also be used in the previous case
   ///    Else if user provided SIM phoneNumber is in the device running the app,
   ///       We can signIn without the OTP.
   ///       because the `verificationCompleted` callback gives the `AuthCredential`(`_phoneAuthCredential`) needed to signIn
@@ -93,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       // signout code
       await FirebaseAuth.instance.signOut();
+      _firebaseUser = null;
       setState(() {
         _status += 'Signed out\n';
       });
@@ -170,6 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _submitOTP() {
+    /// get the `smsCode` from the user
     String smsCode = _otpController.text.toString().trim();
 
     /// when used different phoneNumber other than the current (running) device
