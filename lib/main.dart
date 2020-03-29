@@ -158,11 +158,13 @@ class _MyHomePageState extends State<MyHomePage> {
       /// This function gives `AuthCredential`. Moreover `login` function can be called from this callback
       verificationCompleted: verificationCompleted,
 
+      /// Called when the verification is failed
       verificationFailed: verificationFailed,
 
       /// This is called after the OTP is sent. Gives a `verificationId` and `code`
       codeSent: codeSent,
 
+      /// After automatic code retrival `tmeout` this function is called
       codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
     ); // All the callbacks are above
   }
