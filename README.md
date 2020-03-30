@@ -1,6 +1,6 @@
 # Firebase Phone Authentication using Firebase
 
-Demo Project to show how to Phone Authentication in Flutter usin Firebase backend.
+Demo Project to show how to do Phone Authentication in Flutter using Firebase backend.
 
 ## Motivation
 
