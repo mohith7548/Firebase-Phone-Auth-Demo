@@ -2,38 +2,14 @@
 
 Demo Project to show how to do Phone Authentication in Flutter using Firebase backend.
 
-## Example Screenshots
+## Screenshots
+At First                          |  PhoneNo is entered and submitted
+:--------------------------------:|:--------------------------------------------------------:
+![At First](screenshots/1.jpg)    |  ![PhoneNo is entered and submitted](screenshots/3.jpg)
 
-<img
-src="screenshots/1.jpg"
-raw=true
-alt="Subject Pronouns"
-style="width: 150px;"
-/>
-<img
-src="screenshots/2.jpg"
-raw=true
-alt="Subject Pronouns"
-style="width: 150px;"
-/>
-<img
-src="screenshots/3.jpg"
-raw=true
-alt="Subject Pronouns"
-style="width: 150px;"
-/>
-<img
-src="screenshots/4.jpg"
-raw=true
-alt="Subject Pronouns"
-style="width: 150px;"
-/>
-<img
-src="screenshots/5.jpg"
-raw=true
-alt="Subject Pronouns"
-style="width: 150px;"
-/>
+After OTP is entered & submitted                        |  App is restarted                     
+:------------------------------------------------------:|:----------------------------------------:
+![After OTP is entered & submitted](screenshots/4.jpg)  |  ![App is restarted](screenshots/5.jpg)   
 
 
 ## Motivation
