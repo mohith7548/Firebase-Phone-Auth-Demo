@@ -44,6 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
     _getFirebaseUser();
   }
 
+  void _handleError(e) {
+    print(e.message);
+    setState(() {
+      _status += e.message + '\n';
+    });
+  }
+
   Future<void> _getFirebaseUser() async {
     this._firebaseUser = await FirebaseAuth.instance.currentUser();
     setState(() {
@@ -75,15 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
           .then((AuthResult authRes) {
         _firebaseUser = authRes.user;
         print(_firebaseUser.toString());
-      });
+      }).catchError((e) => _handleError(e));
       setState(() {
         _status += 'Signed In\n';
       });
     } catch (e) {
-      setState(() {
-        _status += e.toString() + '\n';
-      });
-      print(e.toString());
+      _handleError(e);
     }
   }
 
@@ -97,10 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _status += 'Signed out\n';
       });
     } catch (e) {
-      setState(() {
-        _status += e.toString() + '\n';
-      });
-      print(e.toString());
+      _handleError(e);
     }
   }
 
@@ -122,10 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     void verificationFailed(AuthException error) {
       print('verificationFailed');
-      setState(() {
-        _status += '$error\n';
-      });
-      print(error);
+      _handleError(error);
     }
 
     void codeSent(String verificationId, [int code]) {
@@ -156,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       /// If the SIM (with phoneNumber) is in the current device this function is called.
       /// This function gives `AuthCredential`. Moreover `login` function can be called from this callback
+      /// When this function is called there is no need to enter the OTP, you can click on Login button to sigin directly as the device is now verified
       verificationCompleted: verificationCompleted,
 
       /// Called when the verification is failed
@@ -181,11 +180,31 @@ class _MyHomePageState extends State<MyHomePage> {
     _login();
   }
 
+  void _reset() {
+    _phoneNumberController.clear();
+    _otpController.clear();
+    setState(() {
+      _status = "";
+    });
+  }
+
+  void _displayUser() {
+    setState(() {
+      _status += _firebaseUser.toString() + '\n';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          GestureDetector(
+            child: Icon(Icons.refresh),
+            onTap: _reset,
+          ),
+        ],
       ),
       body: ListView(
         padding: EdgeInsets.all(16),
@@ -251,6 +270,12 @@ class _MyHomePageState extends State<MyHomePage> {
           MaterialButton(
             onPressed: _logout,
             child: Text('Logout'),
+            color: Theme.of(context).accentColor,
+          ),
+          SizedBox(height: 24),
+          MaterialButton(
+            onPressed: _displayUser,
+            child: Text('FirebaseUser'),
             color: Theme.of(context).accentColor,
           )
         ],
