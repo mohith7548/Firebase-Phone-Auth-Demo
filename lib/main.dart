@@ -75,15 +75,19 @@ class _MyHomePageState extends State<MyHomePage> {
           .then((AuthResult authRes) {
         _firebaseUser = authRes.user;
         print(_firebaseUser.toString());
+      }).catchError((onError ){
+print("Catch Error===="+ onError);
+
       });
       setState(() {
         _status += 'Signed In\n';
       });
     } catch (e) {
+
       setState(() {
         _status += e.toString() + '\n';
       });
-      print(e.toString());
+print("Catch===="+e.toString());
     }
   }
 

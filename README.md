@@ -2,6 +2,40 @@
 
 Demo Project to show how to do Phone Authentication in Flutter using Firebase backend.
 
+## Example Screenshots
+
+<img
+src="screenshots/1.jpg"
+raw=true
+alt="Subject Pronouns"
+style="width: 150px;"
+/>
+<img
+src="screenshots/2.jpg"
+raw=true
+alt="Subject Pronouns"
+style="width: 150px;"
+/>
+<img
+src="screenshots/3.jpg"
+raw=true
+alt="Subject Pronouns"
+style="width: 150px;"
+/>
+<img
+src="screenshots/4.jpg"
+raw=true
+alt="Subject Pronouns"
+style="width: 150px;"
+/>
+<img
+src="screenshots/5.jpg"
+raw=true
+alt="Subject Pronouns"
+style="width: 150px;"
+/>
+
+
 ## Motivation
 
 I felt there is no setp-by-step documentation for Firebase Phone Authentication in Flutter. There were couple of implementations on Medium but are out-dated and one article got it but that failed to explain some crucial concepts. AndroidX brought a lot of changes in addition to FlutterFire plugins update. I asked this question on [stackoverflow](https://stackoverflow.com/questions/50181000/how-to-do-phone-authentication-in-flutter-using-firebase/56823147#56823147) almost 2 years ago, but failed to get step-by-step answer. So I created this demo project.
