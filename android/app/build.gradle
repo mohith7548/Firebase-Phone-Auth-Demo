@@ -65,4 +65,5 @@ dependencies {
     // implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.android.support:multidex:2.0.1'
     // implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'androidx.browser:browser:1.2.0'
 }
