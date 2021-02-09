@@ -37,6 +37,7 @@ android {
 dependencies {
   // implementation 'com.android.support:multidex:1.0.3' // No AndroidX support
   implementation 'com.android.support:multidex:2.0.1' // Add this to support AndroidX
+  implementation 'androidx.browser:browser:1.2.0' // To display verification webpage in the user's default browser
   ...
 }
 ...
