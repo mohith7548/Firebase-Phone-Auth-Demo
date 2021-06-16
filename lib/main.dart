@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _otpController = TextEditingController();
 
-  FirebaseUser _firebaseUser;
+  User _firebaseUser;
   String _status;
 
   AuthCredential _phoneAuthCredential;
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _getFirebaseUser() async {
-    this._firebaseUser = await FirebaseAuth.instance.currentUser();
+    this._firebaseUser = await FirebaseAuth.instance.currentUser;
     setState(() {
       _status =
           (_firebaseUser == null) ? 'Not Logged In\n' : 'Already LoggedIn\n';
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       await FirebaseAuth.instance
           .signInWithCredential(this._phoneAuthCredential)
-          .then((AuthResult authRes) {
+          .then((authRes) {
         _firebaseUser = authRes.user;
         print(_firebaseUser.toString());
       }).catchError((e) => _handleError(e));
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(phoneAuthCredential);
     }
 
-    void verificationFailed(AuthException error) {
+    void verificationFailed(error) {
       print('verificationFailed');
       _handleError(error);
     }
@@ -174,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     /// when used different phoneNumber other than the current (running) device
     /// we need to use OTP to get `phoneAuthCredential` which is inturn used to signIn/login
-    this._phoneAuthCredential = PhoneAuthProvider.getCredential(
+    this._phoneAuthCredential = PhoneAuthProvider.credential(
         verificationId: this._verificationId, smsCode: smsCode);
 
     _login();
@@ -261,22 +261,27 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(height: 48),
           Text('$_status'),
           SizedBox(height: 48),
-          MaterialButton(
+          ElevatedButton(
             onPressed: _login,
             child: Text('Login'),
-            color: Theme.of(context).accentColor,
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).accentColor,
+            ),
           ),
           SizedBox(height: 24),
-          MaterialButton(
+          ElevatedButton(
             onPressed: _logout,
             child: Text('Logout'),
-            color: Theme.of(context).accentColor,
+            style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).accentColor),
           ),
           SizedBox(height: 24),
-          MaterialButton(
+          ElevatedButton(
             onPressed: _displayUser,
             child: Text('FirebaseUser'),
-            color: Theme.of(context).accentColor,
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).accentColor,
+            ),
           )
         ],
       ),
